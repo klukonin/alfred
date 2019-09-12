@@ -169,7 +169,7 @@ ssize_t send_alfred_packet(struct globals *globals, struct interface *interface,
 	if (globals->ipv4mode) {
 		memset(&dest_addr4, 0, sizeof(dest_addr4));
 		dest_addr4.sin_family = AF_INET;
-		dest_addr4.sin_port = htons(ALFRED_PORT);
+		dest_addr4.sin_port = htons(globals->port);
 		memcpy(&dest_addr4.sin_addr, &dest->ipv4, sizeof(dest->ipv4));
 
 		slen = sizeof(struct sockaddr_in);
@@ -177,7 +177,7 @@ ssize_t send_alfred_packet(struct globals *globals, struct interface *interface,
 	} else {
 		memset(&dest_addr6, 0, sizeof(dest_addr6));
 		dest_addr6.sin6_family = AF_INET6;
-		dest_addr6.sin6_port = htons(ALFRED_PORT);
+		dest_addr6.sin6_port = htons(globals->port);
 		dest_addr6.sin6_scope_id = interface->scope_id;
 		memcpy(&dest_addr6.sin6_addr, &dest->ipv6, sizeof(dest->ipv6));
 
