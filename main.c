@@ -188,6 +188,7 @@ static struct globals *alfred_init(int argc, char *argv[])
 	globals->unix_path = ALFRED_SOCK_PATH_DEFAULT;
 	globals->verbose = 0;
 	globals->ipv4mode = 0;
+	globals->port = 0x4242
 	globals->update_command = NULL;
 	globals->sync_period.tv_sec = ALFRED_INTERVAL;
 	globals->sync_period.tv_nsec = 0;
@@ -252,7 +253,7 @@ static struct globals *alfred_init(int argc, char *argv[])
 			globals->change_interface = strdup(optarg);
 			break;
 		case 'P':
-			ALFRED_PORT = strdup(optarg);
+			globals->port = optarg;
 			break;
 		case 'u':
 			globals->unix_path = optarg;
