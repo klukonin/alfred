@@ -243,13 +243,13 @@ static int netsock_open(struct interface *interface)
 	mac_to_ipv6(&interface->hwaddr, &interface->address);
 
 	memset(&sin6, 0, sizeof(sin6));
-	sin6.sin6_port = htons(ALFRED_PORT);
+	sin6.sin6_port = htons(globals->port);
 	sin6.sin6_family = AF_INET6;
 	memcpy(&sin6.sin6_addr, &interface->address, sizeof(sin6.sin6_addr));
 	sin6.sin6_scope_id = interface->scope_id;
 
 	memset(&sin6_mc, 0, sizeof(sin6_mc));
-	sin6_mc.sin6_port = htons(ALFRED_PORT);
+	sin6_mc.sin6_port = htons(globals->port);
 	sin6_mc.sin6_family = AF_INET6;
 	memcpy(&sin6_mc.sin6_addr, &alfred_mcast,
 	       sizeof(sin6_mc.sin6_addr));
@@ -359,12 +359,12 @@ static int netsock_open4(struct interface *interface)
 	memcpy(&interface->hwaddr, &ifr.ifr_hwaddr.sa_data, 6);
 
 	memset(&sin4, 0, sizeof(sin4));
-	sin4.sin_port = htons(ALFRED_PORT);
+	sin4.sin_port = htons(globals->port);
 	sin4.sin_family = AF_INET;
 	sin4.sin_addr.s_addr = INADDR_ANY;
 
 	memset(&sin_mc, 0, sizeof(sin_mc));
-	sin_mc.sin_port = htons(ALFRED_PORT);
+	sin_mc.sin_port = htons(globals->port);
 	sin_mc.sin_family = AF_INET;
 	memcpy(&sin_mc.sin_addr, &alfred_mcast, sizeof(sin_mc.sin_addr));
 
